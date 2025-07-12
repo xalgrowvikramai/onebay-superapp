@@ -1,0 +1,55 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          cd apps/web
+          npm install
+          cd ../mobile
+          npm install
+          cd ../../backend
+          npm install
+
+      - name: Run tests
+        run: |
+          cd apps/web
+          npm test
+          cd ../mobile
+          npm test
+          cd ../../backend
+          npm test
+
+      - name: Build web application
+        run: |
+          cd apps/web
+          npm run build
+
+      - name: Build mobile application
+        run: |
+          cd apps/mobile
+          npm run build
+
+      - name: Deploy to production
+        run: |
+          # Add your deployment commands here
+          echo "Deploying to production..."

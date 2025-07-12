@@ -1,0 +1,38 @@
+{
+  "name": "onebay",
+  "version": "1.0.0",
+  "description": "OneBay - A Super App for e-commerce and service providers.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "dev": "nodemon backend/src/server.js",
+    "build": "tsc -p backend/tsconfig.json",
+    "test": "jest"
+  },
+  "keywords": [
+    "e-commerce",
+    "super app",
+    "react",
+    "react-native",
+    "node",
+    "express",
+    "postgresql",
+    "supabase"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "supabase-js": "^1.28.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.4",
+    "nodemon": "^2.0.12",
+    "jest": "^27.0.6",
+    "@types/jest": "^27.0.2",
+    "@types/express": "^4.17.13"
+  }
+}

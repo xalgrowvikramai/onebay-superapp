@@ -16,7 +16,7 @@
     "dotenv": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "bcryptjs": "^2.4.3",
-    "supabase-js": "^1.28.0"
+    "@supabase/supabase-js": "^2.43.4"
   },
   "devDependencies": {
     "typescript": "^4.4.4",

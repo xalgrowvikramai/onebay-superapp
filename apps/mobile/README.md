@@ -13,7 +13,7 @@ OneBay is a comprehensive "Super App" that combines various functionalities into
 ## Getting Started
 
 ### Prerequisites
-- Node.js (version 14 or higher)
+- Node.js (version 18 or higher)
 - Expo CLI (install via `npm install -g expo-cli`)
 - A PostgreSQL database (for backend integration)
 

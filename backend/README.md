@@ -13,7 +13,7 @@ OneBay is a full-stack "Super App" that provides a seamless experience for users
 ## Getting Started
 
 ### Prerequisites
-- Node.js (version 14 or higher)
+- Node.js (version 18 or higher)
 - PostgreSQL (version 12 or higher)
 - Supabase account
 

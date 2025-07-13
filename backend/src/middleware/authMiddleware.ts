@@ -8,12 +8,12 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
         return res.status(401).json({ message: 'No token provided' });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_SECRET as string, (err: jwt.VerifyErrors | null, decoded: any) => {
         if (err) {
             return res.status(403).json({ message: 'Failed to authenticate token' });
         }
 
-        req.user = decoded;
+        (req as any).user = decoded;
         next();
     });
 };

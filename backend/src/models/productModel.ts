@@ -43,6 +43,6 @@ export const updateProduct = async (id: number, product: Partial<Omit<Product, '
 };
 
 export const deleteProduct = async (id: number): Promise<boolean> => {
-  const { rowCount } = await pool.query('DELETE FROM products WHERE id = $1', [id]);
-  return rowCount > 0;
+  const result = await pool.query('DELETE FROM products WHERE id = $1', [id]);
+  return (result.rowCount ?? 0) > 0;
 };

@@ -1,10 +1,17 @@
 import { Request, Response } from 'express';
-import { Product } from '../models/productModel';
+import {
+    Product,
+    getProducts,
+    getProductById as getProductByIdModel,
+    createProduct as createProductModel,
+    updateProduct as updateProductModel,
+    deleteProduct as deleteProductModel,
+} from '../models/productModel';
 
 // Get all products
 export const getAllProducts = async (req: Request, res: Response) => {
     try {
-        const products = await Product.findAll();
+        const products = await getProducts();
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({ message: 'Error retrieving products', error });
@@ -15,7 +22,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
 export const getProductById = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-        const product = await Product.findByPk(id);
+        const product = await getProductByIdModel(Number(id));
         if (product) {
             res.status(200).json(product);
         } else {
@@ -30,7 +37,7 @@ export const getProductById = async (req: Request, res: Response) => {
 export const createProduct = async (req: Request, res: Response) => {
     const newProduct = req.body;
     try {
-        const product = await Product.create(newProduct);
+        const product = await createProductModel(newProduct);
         res.status(201).json(product);
     } catch (error) {
         res.status(500).json({ message: 'Error creating product', error });
@@ -42,11 +49,8 @@ export const updateProduct = async (req: Request, res: Response) => {
     const { id } = req.params;
     const updatedData = req.body;
     try {
-        const [updated] = await Product.update(updatedData, {
-            where: { id }
-        });
-        if (updated) {
-            const updatedProduct = await Product.findByPk(id);
+        const updatedProduct = await updateProductModel(Number(id), updatedData);
+        if (updatedProduct) {
             res.status(200).json(updatedProduct);
         } else {
             res.status(404).json({ message: 'Product not found' });
@@ -60,9 +64,7 @@ export const updateProduct = async (req: Request, res: Response) => {
 export const deleteProduct = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
-        const deleted = await Product.destroy({
-            where: { id }
-        });
+        const deleted = await deleteProductModel(Number(id));
         if (deleted) {
             res.status(204).send();
         } else {
